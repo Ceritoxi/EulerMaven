@@ -2,8 +2,8 @@ package com.ceritoxi;
 
 public class Runner 
 {
-    public static void main(String[] borsodi) {
-		Euler2 run = new Euler2();
-		run.printResult();
+    public static void main(String[] args) {
+		Euler2 euler2 = new Euler2();
+		euler2.run();
 	}
 }

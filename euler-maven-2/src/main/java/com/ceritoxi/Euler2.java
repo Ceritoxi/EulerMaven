@@ -6,10 +6,6 @@ public class Euler2 {
 	
 	public Euler2() {
 		this.sum = 0;
-		task();
-	}
-	
-	private void task() {
 		this.sum = Math.sumOfEvenFibonacciTermsUnderX(4000000);
 	}
 	
@@ -17,7 +13,7 @@ public class Euler2 {
 		return this.sum;
 	}
 	
-	public void printResult() {
+	public void run() {
 		System.out.println(this.sum);
 	}
 }

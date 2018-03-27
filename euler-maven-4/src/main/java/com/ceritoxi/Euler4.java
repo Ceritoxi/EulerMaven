@@ -6,10 +6,6 @@ public class Euler4 {
 	
 	public Euler4() {
 		this.result = 0;
-		task();
-	}
-	
-	private void task() {
 		this.result = Math.largestPalindromeMadeFromTwoXDigitNumberThatAreLesserThenSix(3);
 	}
 	
@@ -17,7 +13,7 @@ public class Euler4 {
 		return this.result;
 	}
 	
-	public void printResult() {
+	public void run() {
 		System.out.println(this.result);
 	}
 }

@@ -6,10 +6,6 @@ public class Euler3 {
 	
 	public Euler3() {
 		this.result = 0;
-		task();
-	}
-	
-	private void task() {
 		this.result = Math.largestPrimeFactorOfX(600851475143l);
 	}
 	
@@ -17,7 +13,7 @@ public class Euler3 {
 		return this.result;
 	}
 	
-	public void printResult() {
+	public void run() {
 		System.out.println(this.result);
 	}
 }

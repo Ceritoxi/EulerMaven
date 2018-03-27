@@ -6,10 +6,6 @@ public class Euler1 {
 	
 	public Euler1() {
 		this.sum = 0;
-		task();
-	}
-	
-	private void task() {
 		this.sum = Math.sumOfNumbersUnderZThatAreDividableByXorY(3, 5, 1000);
 	}
 	
@@ -17,7 +13,7 @@ public class Euler1 {
 		return this.sum;
 	}
 	
-	public void printResult() {
+	public void run() {
 		System.out.println(this.sum);
 	}
 }
