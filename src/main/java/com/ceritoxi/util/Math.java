@@ -1,51 +1,40 @@
 package com.ceritoxi.util;
 import java.util.Stack;
+import static java.lang.Math.sqrt;
 
-public class Meth {
+public class Math {
 
-    public static boolean isDividableByXorY(int dividend, int x, int y) {
-        if ((x != 0 && dividend % x == 0) || (y != 0 && dividend % y == 0)) {
-            return true;
-        }
-        return false;
+    private static boolean isDividableBy(int dividend, int number) {
+        return (number != 0 && dividend % number == 0);
     }
 
     public static int sumOfNumbersUnderZThatAreDividableByXorY (int x, int y, int z) {
         int sum = 0;
 
-        if (z < 1) {
-            return sum;
-        }
         for (int i = 1; i < z; i++) {
-            if (isDividableByXorY(i, x, y)) {
+            if (isDividableBy(i, x) || isDividableBy(i, y)) {
                 sum += i;
             }
         }
         return sum;
     }
 
-    public static boolean isEven (int number) {
-        if (number % 2 == 0) {
-            return true;
-        }
-        return false;
+    private static boolean isEven (int number) {
+        return number % 2 == 0;
     }
 
-    public static boolean isEven (long number) {
-        if (number % 2 == 0) {
-            return true;
-        }
-        return false;
+    private static boolean isEven (long number) {
+        return number % 2 == 0;
     }
 
-    public static int sumOfEvenFibonacciTermsUnderX (int x) {
+    public static int sumOfEvenFibonacciTermsUnder (int upperBound) {
 
         int result = 0;
         int sum = 0;
         int firstTerm = 0;
         int secondTerm = 1;
 
-        while (sum < x) {
+        while (sum < upperBound) {
             if (isEven(sum)) {
                 result += sum;
             }
@@ -56,16 +45,56 @@ public class Meth {
         return result;
     }
 
-    public static boolean isPrime (long number) {
+    private static boolean[] primeSieveFromZeroTo(int number) {
+        if (number < 0) {
+            throw new IllegalArgumentException("The argument 'number' must be positive!");
+        }
+        boolean[] sieve = new boolean[number + 1];
+        sieve[0] = false;
+        if (number > 0) {
+            sieve[1] = false;
+        }
+        for (int i = 2; i <= number; i++) {
+            sieve[i] = true;
+        }
+        for (int i = 2; i * i <= number; i++) {
+            if (sieve[i]) {
+                for (int j = i * i; j <= number; j += i) {
+                    sieve[j] = false;
+                }
+            }
+        }
+        return sieve;
+    }
+
+    private static boolean isPrime (long number) {
+
+        if (number == 2L || number == 3L || number == 5L) {
+            return true;
+        }
+        if (number <= 1L || number % 2L == 0L) {
+            return false;
+        }
+
+        for (long i = 3L; i <= sqrt(number); i += 2L) {
+            if (number % i == 0L) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private static boolean isPrime (int number) {
 
         if (number == 2 || number == 3 || number == 5) {
             return true;
         }
-        if (number <= 1 || number % 2 == 0 || number % 3 == 0 || number % 5 == 0) {
+        if (number <= 1 || number % 2 == 0) {
             return false;
         }
 
-        for (long i = 3; i <= java.lang.Math.sqrt(number); i += 2) {
+        for (int i = 3; i <= sqrt(number); i += 2) {
             if (number % i == 0) {
                 return false;
             }
@@ -74,25 +103,7 @@ public class Meth {
         return true;
     }
 
-    public static boolean isPrime (int number) {
-
-        if (number == 2 || number == 3 || number == 5) {
-            return true;
-        }
-        if (number <= 1 || number % 2 == 0 || number % 3 == 0 || number % 5 == 0) {
-            return false;
-        }
-
-        for (int i = 3; i <= java.lang.Math.sqrt(number); i += 2) {
-            if (number % i == 0) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    public static int nextPrime (int number) {
+    private static int nextPrime (int number) {
         if (number == 0) {
             return 2;
         }
@@ -107,24 +118,25 @@ public class Meth {
         return number;
     }
 
-    public static long nextPrime (long number) {
-        if (number == 0) {
-            return 2;
+    private static long nextPrime (long number) {
+        if (number == 0L) {
+            return 2L;
         }
-        if (isEven(number) || number == 1) {
+        if (isEven(number) || number == 1L) {
             number++;
         } else {
-            number += 2;
+            number += 2L;
         }
         while (!isPrime(number)) {
-            number += 2;
+            number += 2L;
         }
         return number;
     }
 
-    //assuming prime is indeed a prime
     public static int primeIndex (int prime) {
-        //indexing from 0
+        if (!isPrime(prime)) {
+            throw new IllegalArgumentException("The argument 'prime' must be a prime!");
+        }
         int index = 0;
         int auxPrime = 2;
         while (auxPrime < prime) {
@@ -134,21 +146,21 @@ public class Meth {
         return index;
     }
 
-    public static long largestPrimeFactorOfX (long x) {
+    public static long largestPrimeFactorOf (long number) { // must modify
         long largest = 0;
-        for (long i = 1; i <= x; i++) {
-            if (isPrime(i) && x % i == 0) {
+        for (long i = 1; i <= number; i++) {
+            if (isPrime(i) && number % i == 0) {
                 if (i > largest) {
                     largest = i;
                 }
-                x /= i;
+                number /= i;
                 i = 1;
             }
         }
         return largest;
     }
 
-    public static boolean isPalindrome (int number) {
+    private static boolean isPalindrome (int number) {
         String stringNumber = String.valueOf(number);
         if (number > 0) {
             for (int i = 0; i < stringNumber.length() / 2; i++) {
@@ -168,7 +180,7 @@ public class Meth {
 
     public static int largestPalindromeMadeFromTwoXDigitNumberThatAreLesserThenSix (int x) {
         if (x < 1 || x > 5) {
-            return 0;
+            throw new IllegalArgumentException("The argument 'x' must be lesser than six!") ;
         }
         int largest = 0;
         int counter = 0;
@@ -184,7 +196,7 @@ public class Meth {
         return largest;
     }
 
-    public static int positiveIntegerPower (int base, int exponent) {
+    private static int positiveIntegerPower (int base, int exponent) {
         if (exponent == 0) {
             return 1;
         }
@@ -195,7 +207,7 @@ public class Meth {
         return base;
     }
 
-    public static int[] quickSort(int[] inputArray) {
+    private static int[] quickSort(int[] inputArray) {
         if (inputArray == null || inputArray.length == 0) {
             return inputArray;
         }
@@ -233,31 +245,31 @@ public class Meth {
         return array;
     }
 
-    public static int[][] primeFactorsOfX (int x) {
-        if (x == 1) {
+    private static int[][] primeFactorsOf (int number) {
+        if (number == 1) {
             int[][] exceptionArray = new int[1][2];
             exceptionArray[0][0] = 2;
             exceptionArray[0][1] = 0;
             return exceptionArray;
-        } else if (x < 1) {
+        } else if (number < 1) {
             int[][] exceptionArray = new int[1][2];
             exceptionArray[0][0] = 0;
             exceptionArray[0][1] = 1;
             return exceptionArray;
         }
 
-        Stack factors = new Stack();
-        for (int i = 2; i <= x; i = nextPrime(i)) {
-            if (x % i == 0) {
+        Stack<Integer> factors = new Stack<>();
+        for (Integer i = 2; i <= number; i = nextPrime(i)) {
+            if (number % i == 0) {
                 factors.push(i);
-                x /= i;
+                number /= i;
                 i = 1;
             }
         }
 
         int[] factorsArray = new int[factors.size()];
         for (int i = 0; i < factorsArray.length; i++) {
-            factorsArray[i] = (int)factors.pop();
+            factorsArray[i] = factors.pop();
         }
 
         factorsArray = quickSort(factorsArray);
@@ -285,9 +297,9 @@ public class Meth {
         return finalPrimeFactors;
     }
 
-    public static int greatestCommonDivisor(int x, int y) {
-        int[][] xArray = primeFactorsOfX(x);
-        int[][] yArray = primeFactorsOfX(y);
+    private static int greatestCommonDivisor(int x, int y) {
+        int[][] xArray = primeFactorsOf(x);
+        int[][] yArray = primeFactorsOf(y);
         int[][] gcdArray = new int[xArray.length][2];
         for (int[] aGcdFactor : gcdArray) {
             aGcdFactor[0] = 1;
@@ -330,9 +342,9 @@ public class Meth {
         return gcd;
     }
 
-    public static int leastCommonMultiple(int x, int y) {
-        int[][] xArray = primeFactorsOfX(x);
-        int[][] yArray = primeFactorsOfX(y);
+    private static int leastCommonMultiple(int x, int y) {
+        int[][] xArray = primeFactorsOf(x);
+        int[][] yArray = primeFactorsOf(y);
         int[][] lcmArray = new int[xArray.length + yArray.length][2];
         for (int[] anLcmFactor : lcmArray) {
             anLcmFactor[0] = 1;
@@ -385,7 +397,7 @@ public class Meth {
         return lcm;
     }
 
-    public static int absolute(int number) {
+    private static int absolute(int number) {
         if (number < 0) {
             return number * -1;
         } else {
@@ -393,11 +405,11 @@ public class Meth {
         }
     }
 
-    public static int differenceBetweenSumOfSquaresAndSquareOfSumUnderX(int x) {
-        x = absolute(x);
+    public static int differenceBetweenSumOfSquaresAndSquareOfSumUnder(int number) {
+        number = absolute(number);
         int result = 0;
-        for (int i = 1; i < x; i++) {
-            for (int j = i + 1; j < x ; j++) {
+        for (int i = 1; i < number; i++) {
+            for (int j = i + 1; j < number ; j++) {
                 result += i * j * 2;
             }
         }
@@ -440,17 +452,16 @@ public class Meth {
         return (positiveIntegerPower(x, 2) + positiveIntegerPower(y, 2)) == positiveIntegerPower(z, 2);
     }
 
-    /*public static int productOfAPythagoreanTripletForWhichTheSumIsX(int x) {
+    public static long sumOfAllPrimesBelow(int number) {
 
-    }*/
-
-    public static long sumOfAllPrimesBelowX(long x) {
-        long sum = 0;
-        long prime = 0;
-        while (prime < x) {
-            sum += prime;
-            prime = nextPrime(prime);
+        long sum = 0L;
+        boolean[] sieve = primeSieveFromZeroTo(number);
+        for (int i = 0; i <= number; i++) {
+            if (sieve[i]) {
+                sum += i;
+            }
         }
+
         return sum;
     }
 }
