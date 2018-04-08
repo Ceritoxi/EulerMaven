@@ -146,7 +146,7 @@ public class Math {
         return index;
     }
 
-    public static long largestPrimeFactorOf (long number) { // must modify
+    public static long largestPrimeFactorOf (long number) {
         long largest = 0;
         for (long i = 1; i <= number; i++) {
             if (isPrime(i) && number % i == 0) {
