@@ -4,7 +4,7 @@ import static java.lang.Math.sqrt;
 
 public class Math {
 
-    private static boolean isDividableBy(int dividend, int number) {
+    public static boolean isDividableBy(int dividend, int number) {
         return (number != 0 && dividend % number == 0);
     }
 
@@ -19,11 +19,11 @@ public class Math {
         return sum;
     }
 
-    private static boolean isEven (int number) {
+    public static boolean isEven (int number) {
         return number % 2 == 0;
     }
 
-    private static boolean isEven (long number) {
+    public static boolean isEven (long number) {
         return number % 2 == 0;
     }
 
@@ -45,9 +45,9 @@ public class Math {
         return result;
     }
 
-    private static boolean[] primeSieveFromZeroTo(int number) {
+    public static boolean[] primeSieveFromZeroTo(int number) {
         if (number < 0) {
-            throw new IllegalArgumentException("The argument 'number' must be positive!");
+            throw new IllegalArgumentException("The argument 'number' must be 'not negative'!");
         }
         boolean[] sieve = new boolean[number + 1];
         sieve[0] = false;
@@ -67,7 +67,7 @@ public class Math {
         return sieve;
     }
 
-    private static boolean isPrime (long number) {
+    public static boolean isPrime (long number) {
 
         if (number == 2L || number == 3L || number == 5L) {
             return true;
@@ -85,7 +85,7 @@ public class Math {
         return true;
     }
 
-    private static boolean isPrime (int number) {
+    public static boolean isPrime (int number) {
 
         if (number == 2 || number == 3 || number == 5) {
             return true;
@@ -103,7 +103,7 @@ public class Math {
         return true;
     }
 
-    private static int nextPrime (int number) {
+    public static int nextPrime (int number) {
         if (number == 0) {
             return 2;
         }
@@ -118,7 +118,7 @@ public class Math {
         return number;
     }
 
-    private static long nextPrime (long number) {
+    public static long nextPrime (long number) {
         if (number == 0L) {
             return 2L;
         }
@@ -160,7 +160,7 @@ public class Math {
         return largest;
     }
 
-    private static boolean isPalindrome (int number) {
+    public static boolean isPalindrome (int number) {
         String stringNumber = String.valueOf(number);
         if (number > 0) {
             for (int i = 0; i < stringNumber.length() / 2; i++) {
@@ -196,7 +196,7 @@ public class Math {
         return largest;
     }
 
-    private static int positiveIntegerPower (int base, int exponent) {
+    public static int positiveIntegerPower (int base, int exponent) {
         if (exponent == 0) {
             return 1;
         }
@@ -207,7 +207,7 @@ public class Math {
         return base;
     }
 
-    private static int[] quickSort(int[] inputArray) {
+    public static int[] quickSort(int[] inputArray) {
         if (inputArray == null || inputArray.length == 0) {
             return inputArray;
         }
@@ -244,8 +244,10 @@ public class Math {
         array[j] = temp;
         return array;
     }
+	
+	
 
-    private static int[][] primeFactorsOf (int number) {
+    public static int[][] primeFactorsOf (int number) {
         if (number == 1) {
             int[][] exceptionArray = new int[1][2];
             exceptionArray[0][0] = 2;
@@ -297,7 +299,7 @@ public class Math {
         return finalPrimeFactors;
     }
 
-    private static int greatestCommonDivisor(int x, int y) {
+    public static int greatestCommonDivisor(int x, int y) {
         int[][] xArray = primeFactorsOf(x);
         int[][] yArray = primeFactorsOf(y);
         int[][] gcdArray = new int[xArray.length][2];
@@ -342,7 +344,7 @@ public class Math {
         return gcd;
     }
 
-    private static int leastCommonMultiple(int x, int y) {
+    public static int leastCommonMultiple(int x, int y) {
         int[][] xArray = primeFactorsOf(x);
         int[][] yArray = primeFactorsOf(y);
         int[][] lcmArray = new int[xArray.length + yArray.length][2];
@@ -397,7 +399,7 @@ public class Math {
         return lcm;
     }
 
-    private static int absolute(int number) {
+    public static int absolute(int number) {
         if (number < 0) {
             return number * -1;
         } else {
