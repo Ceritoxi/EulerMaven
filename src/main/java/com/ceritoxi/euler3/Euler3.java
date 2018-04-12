@@ -7,7 +7,6 @@ public class Euler3 {
 	private int result;
 	
 	public Euler3() {
-		this.result = 0;
 		this.result = Math.largestPrimeFactorOf(600851475143);
 	}
 	
