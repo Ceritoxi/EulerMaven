@@ -7,7 +7,6 @@ public class Euler6 {
 	private int result;
 	
 	public Euler6() {
-		this.result = 0;
 		this.result = Math.differenceBetweenSumOfSquaresAndSquareOfSumUnder(101);
 	}
 	
