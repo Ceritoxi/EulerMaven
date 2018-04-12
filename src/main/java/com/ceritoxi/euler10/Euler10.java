@@ -7,7 +7,6 @@ public class Euler10 {
 	private long result;
 	
 	public Euler10() {
-		this.result = 0;
 		this.result = Math.sumOfAllPrimesBelow(2000000);
 	}
 	
