@@ -1,6 +1,8 @@
 package com.ceritoxi.util;
 import java.util.Stack;
 import static java.lang.Math.sqrt;
+import static java.lang.Math.pow;
+import static com.ceritoxi.util.Util.*;
 
 public class Math {
 
@@ -24,7 +26,7 @@ public class Math {
     }
 
     public static boolean isEven (long number) {
-        return number % 2 == 0;
+        return number % 2L == 0L;
     }
 
     public static int sumOfEvenFibonacciTermsUnder (int upperBound) {
@@ -69,7 +71,7 @@ public class Math {
 
     public static boolean isPrime (long number) {
 
-        if (number == 2L || number == 3L || number == 5L) {
+        if (number == 2L) {
             return true;
         }
         if (number <= 1L || number % 2L == 0L) {
@@ -87,7 +89,7 @@ public class Math {
 
     public static boolean isPrime (int number) {
 
-        if (number == 2 || number == 3 || number == 5) {
+        if (number == 2) {
             return true;
         }
         if (number <= 1 || number % 2 == 0) {
@@ -178,9 +180,9 @@ public class Math {
         return true;
     }
 
-    public static int largestPalindromeMadeFromTwoXDigitNumberThatAreLesserThenSix (int x) {
+    public static int largestPalindromeMadeFromTwoXDigitNumberThatAreLessThenSix (int x) {
         if (x < 1 || x > 5) {
-            throw new IllegalArgumentException("The argument 'x' must be lesser than six!") ;
+            throw new IllegalArgumentException("The argument 'x' must be less than six!") ;
         }
         int largest = 0;
         int counter = 0;
@@ -197,56 +199,10 @@ public class Math {
     }
 
     public static int positiveIntegerPower (int base, int exponent) {
-        if (exponent == 0) {
-            return 1;
-        }
-        int ogBase = base;
-        for (int i = 1; i < exponent; i++) {
-            base *= ogBase;
-        }
-        return base;
+        return (int)(pow((double)base, (double)exponent));
     }
 
-    public static int[] quickSort(int[] inputArray) {
-        if (inputArray == null || inputArray.length == 0) {
-            return inputArray;
-        }
-        inputArray = sort(0, inputArray.length - 1, inputArray);
-        return inputArray;
-    }
-
-    private static int[] sort(int lowerIndex, int higherIndex, int[] array) {
-        int i = lowerIndex;
-        int j = higherIndex;
-        int pivot = array[lowerIndex+(higherIndex-lowerIndex)/2];
-        while (i <= j) {
-            while (array[i] < pivot) {
-                i++;
-            }
-            while (array[j] > pivot) {
-                j--;
-            }
-            if (i <= j) {
-                array = swapTermsInArrayByIndex(i, j, array);
-                i++;
-                j--;
-            }
-        }
-        if (lowerIndex < j)
-            array = sort(lowerIndex, j, array);
-        if (i < higherIndex)
-            array = sort(i, higherIndex, array);
-        return array;
-    }
-    private static int[] swapTermsInArrayByIndex(int i, int j, int[] array) {
-        int temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
-        return array;
-    }
 	
-	
-
     public static int[][] primeFactorsOf (int number) {
         if (number == 1) {
             int[][] exceptionArray = new int[1][2];
@@ -261,7 +217,7 @@ public class Math {
         }
 
         Stack<Integer> factors = new Stack<>();
-        for (Integer i = 2; i <= number; i = nextPrime(i)) {
+        for (int i = 2; i <= number; i = nextPrime(i)) {
             if (number % i == 0) {
                 factors.push(i);
                 number /= i;

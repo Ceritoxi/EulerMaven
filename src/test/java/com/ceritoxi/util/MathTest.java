@@ -142,8 +142,8 @@ public class MathTest extends TestCase {
 		assertEquals(false, Math.isPalindrome(6857));
     }
 	
-	public void testMathLargestPalindromeMadeFromTwoXDigitNumberThatAreLesserThenSix() {
-		assertEquals(906609, Math.largestPalindromeMadeFromTwoXDigitNumberThatAreLesserThenSix(3));
+	public void testMathLargestPalindromeMadeFromTwoXDigitNumberThatAreLessThenSix() {
+		assertEquals(906609, Math.largestPalindromeMadeFromTwoXDigitNumberThatAreLessThenSix(3));
     }
 	
 	public void testMathPositiveIntegerPower() {
