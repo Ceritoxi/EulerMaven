@@ -7,7 +7,6 @@ public class Euler9 {
 	private int result;
 	
 	public Euler9() {
-		this.result = 0;
 		this.result = task();
 	}
 	
