@@ -7,8 +7,7 @@ public class Euler4 {
 	private int result;
 	
 	public Euler4() {
-		this.result = 0;
-		this.result = Math.largestPalindromeMadeFromTwoXDigitNumberThatAreLesserThenSix(3);
+		this.result = Math.largestPalindromeMadeFromTwoXDigitNumberThatAreLessThenSix(3);
 	}
 	
 	public int getResult() {
