@@ -7,7 +7,6 @@ public class Euler2 {
 	private int result;
 	
 	public Euler2() {
-		this.result = 0;
 		this.result = Math.sumOfEvenFibonacciTermsUnder(4000000);
 	}
 	
