@@ -7,7 +7,6 @@ public class Euler7 {
 	private int result;
 	
 	public Euler7() {
-		this.result = 0;
 		this.result = Math.nthPrime(10001);
 	}
 	
