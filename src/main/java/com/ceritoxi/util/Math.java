@@ -2,6 +2,7 @@ package com.ceritoxi.util;
 import java.util.Stack;
 import static java.lang.Math.sqrt;
 import static java.lang.Math.pow;
+import static java.lang.Math.abs;
 import static com.ceritoxi.util.Util.*;
 
 public class Math {
@@ -355,16 +356,8 @@ public class Math {
         return lcm;
     }
 
-    public static int absolute(int number) {
-        if (number < 0) {
-            return number * -1;
-        } else {
-            return number;
-        }
-    }
-
     public static int differenceBetweenSumOfSquaresAndSquareOfSumUnder(int number) {
-        number = absolute(number);
+        number = abs(number);
         int result = 0;
         for (int i = 1; i < number; i++) {
             for (int j = i + 1; j < number ; j++) {
@@ -375,6 +368,9 @@ public class Math {
     }
 
     public static long nthPrime(long number) {
+		if (number < 1) {
+            throw new IllegalArgumentException("Argument must be above zero!");
+        }
         long prime = 0;
         while (number > 0) {
             prime = nextPrime(prime);
@@ -414,7 +410,7 @@ public class Math {
 
         long sum = 0L;
         boolean[] sieve = primeSieveFromZeroTo(number);
-        for (int i = 0; i <= number; i++) {
+        for (int i = 0; i < number; i++) {
             if (sieve[i]) {
                 sum += i;
             }
