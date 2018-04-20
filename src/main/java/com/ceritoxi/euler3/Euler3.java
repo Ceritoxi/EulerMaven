@@ -4,13 +4,14 @@ import com.ceritoxi.util.Math;
 
 public class Euler3 {
 	
-	private int result;
+	private long result;
 	
 	public Euler3() {
-		this.result = Math.largestPrimeFactorOf(600851475143);
+		this.result = Math.largestPrimeFactorOf(600851475143L);
 	}
 	
-	public int getResult() {
+	public long getResult() {
+
 		return this.result;
 	}
 	
