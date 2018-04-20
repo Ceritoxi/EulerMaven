@@ -1,13 +1,13 @@
-package com.ceritoxi.euler1;
+package com.ceritoxi.euler2;
 
 import com.ceritoxi.util.Math;
 
-public class Euler1 {
+public class Euler2 {
 	
 	private int result;
 	
-	public Euler1() {
-		this.result = Math.sumOfNumbersUnderZThatAreDividableByXorY(3, 5, 1000);
+	public Euler2() {
+		this.result = Math.sumOfEvenFibonacciTermsUnder(4000000);
 	}
 	
 	public int getResult() {
