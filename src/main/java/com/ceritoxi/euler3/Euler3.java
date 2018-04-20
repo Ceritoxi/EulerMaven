@@ -11,6 +11,7 @@ public class Euler3 {
 	}
 	
 	public long getResult() {
+
 		return this.result;
 	}
 	

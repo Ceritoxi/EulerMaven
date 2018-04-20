@@ -3,7 +3,7 @@ package com.ceritoxi.euler8;
 import com.ceritoxi.util.Math;
 
 public class Euler8 {
-	
+
 	private long result;
 	
 	public Euler8() {
