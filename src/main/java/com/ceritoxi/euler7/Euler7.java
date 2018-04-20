@@ -4,13 +4,13 @@ import com.ceritoxi.util.Math;
 
 public class Euler7 {
 	
-	private int result;
+	private long result;
 	
 	public Euler7() {
 		this.result = Math.nthPrime(10001);
 	}
 	
-	public int getResult() {
+	public long getResult() {
 		return this.result;
 	}
 	
